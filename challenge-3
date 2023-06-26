@@ -1,0 +1,48 @@
+// Chalenge 3
+
+function attachClickListenersToButtons() {
+  var topMenu = document.querySelector('[data-test="desktop-navigation--second-level--list"]');
+  var buttons = topMenu.querySelectorAll('li[data-category-name]');
+
+  buttons.forEach(function(button) {
+    var buttonText = button.querySelector('a').textContent.trim();
+    var excludeButtons = ['All Brands', 'Sale', 'New Realeases'];
+
+    if (!excludeButtons.includes(buttonText)) {
+      button.addEventListener('click', function() {
+        var cookieName = 'browserClick';
+        var cookieValue = getCookie(cookieName);
+
+        if (!cookieValue) {
+          setCookie(cookieName, buttonText);
+        } else {
+          alert('Cookie value: ' + cookieValue);
+        }
+      });
+    }
+  });
+
+  function getCookie(name) {
+    var cookiePrefix = name + '=';
+    var cookies = document.cookie.split(';');
+
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+
+      if (cookie.indexOf(cookiePrefix) === 0) {
+        return cookie.substring(cookiePrefix.length);
+      }
+    }
+
+    return null;
+  }
+
+  function setCookie(name, value) {
+    var expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+
+    document.cookie = name + '=' + value + '; expires=' + expires.toUTCString() + '; path=/';
+  }
+}
+
+attachClickListenersToButtons();
