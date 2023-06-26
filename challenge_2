@@ -1,0 +1,15 @@
+// Challege 2
+
+function assignClickHandlerToButtons() {
+  var signUpButtons = document.querySelectorAll('a[href="/#signup"]');
+
+  for (var i = 0; i < signUpButtons.length; i++) {
+    (function(index) {
+      signUpButtons[i].addEventListener('click', function() {
+        alert('Clicked button ' + (index + 1));
+      });
+    })(i);
+  }
+}
+
+assignClickHandlerToButtons();
