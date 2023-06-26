@@ -1,0 +1,21 @@
+//Challenge 1
+
+(function() {
+  var priceElement = document.querySelector('[data-test="espPlanPrice"]');
+  
+  if (priceElement) {
+    var priceText = priceElement.textContent.trim();
+    var price = parseFloat(priceText.substring(1));
+    
+    var result = {
+      price: price,
+      currency: 'USD'
+    };
+    
+    console.log(result);
+    return result;
+  } else {
+    console.log('Price not found.');
+    return null;
+  }
+})();
