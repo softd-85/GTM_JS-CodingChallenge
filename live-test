@@ -1,0 +1,12 @@
+// Get H2 titles from https://www.3qdept.com/
+var h2Elements = document.querySelectorAll('.col-sm-12.maincopy.introColumn h2');
+var h2Titles = Array.from(h2Elements, element => element.textContent.toLowerCase());
+
+// Extract vowels from H2 titles
+var vowelPattern = /[aeiou]/gi;
+var vowelCharacters = h2Titles.join('').match(vowelPattern) || [];
+
+// Get unique vowel characters
+var uniqueVowels = [...new Set(vowelCharacters)];
+
+console.log('Unique Vowels:', uniqueVowels);
